@@ -9,6 +9,7 @@ import { CustomTripSection } from '../components/CustomTripSection';
 import { PassportSection } from '../components/PassportSection';
 import { BookingSection } from '../components/BookingSection';
 import { Footer } from '../components/Footer';
+import { ChatBot } from '../components/ChatBot';
 
 const Index = () => {
   return (
@@ -23,6 +24,7 @@ const Index = () => {
         <PassportSection />
         <BookingSection />
         <Footer />
+        <ChatBot />
       </div>
     </ThemeProvider>
   );

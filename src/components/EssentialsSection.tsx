@@ -14,7 +14,7 @@ export function EssentialsSection() {
   return (
     <section className="section essentials-section" id="essentials">
       <div className="section-left">
-        <motion.div 
+        <motion.div
           className="section-title"
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -23,19 +23,24 @@ export function EssentialsSection() {
           <h2>The Essentials</h2>
           <p className="subtitle">What to Carry for your adventure</p>
         </motion.div>
-        
-        <motion.div 
+
+        <motion.div
           className="stamp"
           initial={{ opacity: 0, rotate: -15 }}
           whileInView={{ opacity: 0.7, rotate: 0 }}
           viewport={{ once: true }}
         >
-          <svg viewBox="0 0 80 80" fill="currentColor" style={{ color: 'var(--text-muted)' }}>
-            <rect x="5" y="5" width="70" height="70" rx="6" stroke="currentColor" strokeWidth="2" fill="none" />
-            <text x="40" y="45" textAnchor="middle" fontSize="10" fill="currentColor" fontFamily="serif">
-              TRIPPY
-            </text>
-          </svg>
+          <img
+            src="/images/logo.jpeg"
+            alt="Trippy Logo"
+            style={{
+              width: '100px',
+              height: '100px',
+              objectFit: 'cover',
+              borderRadius: '12px',
+              boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
+            }}
+          />
         </motion.div>
       </div>
 

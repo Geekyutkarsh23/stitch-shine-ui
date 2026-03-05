@@ -9,23 +9,23 @@ const bookingSteps = [
     description: 'Fill out our traveler profile form to help us personalize your experience.',
     buttonText: 'Google Form Link',
     buttonClass: '',
-    link: '#',
+    link: 'https://forms.gle/ZxzCRbjswB7GyPaR7',
   },
   {
     icon: CheckSquare,
     iconColor: '#FF69B4',
     title: 'Step 2: NOC Form',
     description: 'Submit your No Objection Certificate for smooth travel processing.',
-    buttonText: 'NOC Submission',
+    buttonText: 'Download NOC',
     buttonClass: 'secondary',
-    link: '#',
+    link: 'https://drive.google.com/file/d/1_sKsSaxBw-QDEio733lG4aLiTkCIKo3z/view?usp=drive_link',
   },
 ];
 
 export function BookingSection() {
   return (
     <section className="section booking-section" id="booking">
-      <motion.div 
+      <motion.div
         className="section-header"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -51,8 +51,10 @@ export function BookingSection() {
             </div>
             <h3>{step.title}</h3>
             <p>{step.description}</p>
-            <motion.a 
+            <motion.a
               href={step.link}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`step-btn ${step.buttonClass}`}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}

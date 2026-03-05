@@ -5,9 +5,9 @@ import { useTheme } from '../context/ThemeContext';
 
 const navLinks = [
   { label: 'OUR VIBE', href: '#vibe' },
-  { label: 'PLAN YOUR CRUSH', href: '#featured' },
   { label: 'ESSENTIALS', href: '#essentials' },
-  { label: 'CAREER', href: '#booking' },
+  { label: 'PLAN YOUR CRUSH', href: '#featured' },
+  { label: 'FREE WELCOME KIT', href: '#welcome-kit' },
   { label: 'GET IN TOUCH', href: '#footer' },
 ];
 
@@ -35,8 +35,23 @@ export function Navbar() {
   return (
     <>
       <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
-        <div className="logo">
-          <Mountain />
+        <div
+          className="logo"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          style={{ cursor: 'pointer' }}
+        >
+          <img
+            src="/images/logo.jpeg"
+            alt="Trippy Logo"
+            style={{
+              height: '50px',
+              width: '50px',
+              objectFit: 'cover',
+              borderRadius: '50%',
+              border: '2px solid white'
+            }}
+          />
+          <span className="logo-text">TrippyCrush</span>
         </div>
 
         <div className="nav-links">
@@ -61,7 +76,7 @@ export function Navbar() {
           >
             BOOK NOW
           </button>
-          
+
           <button className="theme-toggle" onClick={toggleTheme}>
             {theme === 'light' ? <Moon /> : <Sun />}
           </button>
@@ -97,6 +112,13 @@ export function Navbar() {
                 {link.label}
               </a>
             ))}
+            <button
+              className="book-now-btn"
+              style={{ width: '100%', marginTop: '10px' }}
+              onClick={() => handleNavClick('#booking')}
+            >
+              BOOK NOW
+            </button>
           </motion.div>
         )}
       </AnimatePresence>

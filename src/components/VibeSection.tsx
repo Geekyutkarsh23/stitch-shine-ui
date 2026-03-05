@@ -27,15 +27,15 @@ const vibeCards = [
     icon: Gift,
     iconClass: 'orange',
     iconColor: '#FF6B35',
-    title: 'The Welcome Kit',
-    description: 'Signature Trippy Welcome Kit—a curated selection of travel essentials and local treats.',
+    title: 'The FREE Welcome Kit',
+    description: 'Signature Trippy FREE Welcome Kit—a curated selection of travel essentials and local treats.',
   },
 ];
 
 export function VibeSection() {
   return (
     <section className="section vibe-section" id="vibe">
-      <motion.div 
+      <motion.div
         className="section-header"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

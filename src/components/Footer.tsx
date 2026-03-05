@@ -2,29 +2,41 @@ import { motion } from 'framer-motion';
 import { Mountain, MapPin, Phone, MessageCircle, Mail, Instagram, Facebook } from 'lucide-react';
 
 export function Footer() {
+
   return (
     <footer className="footer" id="footer">
       <div className="footer-content">
-        <motion.div 
+        <motion.div
           className="footer-brand"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
           <div className="logo">
-            <Mountain style={{ color: 'var(--text-primary)' }} />
+            <img src="/images/logo.jpeg" alt="Trippy Logo" style={{ height: '50px', width: 'auto' }} />
           </div>
           <p className="tagline font-handwritten">
             Trips you'll crush on, memories that last forever.
           </p>
-          <h4>HEADQUARTERS</h4>
-          <div className="address">
+          <h4 style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '1px', color: 'var(--text-primary)', marginBottom: '12px', textTransform: 'uppercase' }}>HEADQUARTERS</h4>
+          <div className="address lobster-regular">
             <MapPin size={16} />
-            <p>123 Wanderlust Lane, Suite 101<br />Bali, Indonesia 80361</p>
+            <a
+              href="https://maps.app.goo.gl/1xScZmnC9dW2fgZq5"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: 'var(--text-muted)', textDecoration: 'none', transition: 'color 0.3s' }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#FF6B35'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}
+              title="Click to view on Google Maps"
+            >
+              TrippyCrush
+              <br /> Main Mandoli Road, Shahdara<br />Delhi, India 110093
+            </a>
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="footer-links"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -33,14 +45,16 @@ export function Footer() {
         >
           <h4>LEGAL & LINKS</h4>
           <ul>
-            <li><a href="#">Terms & Conditions</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Booking Details</a></li>
-            <li><a href="#">Career</a></li>
+            <li><a href="https://drive.google.com/file/d/1wzsOcTJF0N6QwcBb9VpGwS_Ox0ZTP7Lu/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Travel Essentials</a></li>
+            <li><a href="https://drive.google.com/file/d/1VLyIzmpObiflEIQbM0kbohDAjZesMS96/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Terms & Conditions</a></li>
+            <li><a href="https://drive.google.com/file/d/1N-rFJq_Z6mRfYg46yC4zS437LzJcXJq-/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Payment & Cancellation Policy</a></li>
+            <li><a href="https://drive.google.com/file/d/14APeZQowwP6R7vgnhZgczesT719_t2jw/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Our Uniqueness</a></li>
+            <li><a href="https://drive.google.com/file/d/1_sKsSaxBw-QDEio733lG4aLiTkCIKo3z/view?usp=drive_link" target="_blank" rel="noopener noreferrer">NOC</a></li>
+            <li><a href="https://drive.google.com/file/d/1TDMESViprpnIHjRuKeFhyWmfOcFxTCan/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Travel Games</a></li>
           </ul>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="footer-contact"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -51,20 +65,24 @@ export function Footer() {
           <div className="contact-list">
             <div className="contact-item">
               <Phone />
-              <a href="tel:+1234567890">+1 (234) 567-890</a>
+              <span>
+                <a href="tel:+918448716217">+91 8448716217</a> , <a href="tel:+918929155621">8929155621</a>
+              </span>
             </div>
             <div className="contact-item">
               <MessageCircle />
-              <span>WhatsApp: +1 987 654 321</span>
+              <span>
+                WhatsApp: <a href="https://wa.me/918448716217?text=Hi,%20I%20want%20to%20enquire%20about%20TrippyCrush's%20upcoming%20trip." target="_blank" rel="noopener noreferrer">+91 8448716217</a>
+              </span>
             </div>
             <div className="contact-item">
               <Mail />
-              <a href="mailto:hello@trippycrush.com">hello@trippycrush.com</a>
+              <a href="mailto:trippycrush3@gmail.com">trippycrush3@gmail.com</a>
             </div>
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="footer-social"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -73,21 +91,18 @@ export function Footer() {
         >
           <h4>FOLLOW THE VIBE</h4>
           <div className="social-links">
-            <a href="#" aria-label="Instagram">
+            <a href="https://www.instagram.com/trippycrush_" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
               <Instagram />
             </a>
-            <a href="#" aria-label="Facebook">
+            <a href="https://www.facebook.com/share/18Cj9RRsXW/" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
               <Facebook />
+            </a>
+            <a href="https://wa.me/918448716217?text=Hi,%20I%20want%20to%20enquire%20about%20TrippyCrush's%20upcoming%20trip." aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+              <MessageCircle />
             </a>
           </div>
           <div className="qr-code">
-            <svg viewBox="0 0 60 60" fill="var(--text-muted)" style={{ width: '50px', height: '50px' }}>
-              <rect x="5" y="5" width="20" height="20" rx="2" />
-              <rect x="35" y="5" width="20" height="20" rx="2" />
-              <rect x="5" y="35" width="20" height="20" rx="2" />
-              <rect x="35" y="35" width="10" height="10" rx="1" />
-              <rect x="45" y="45" width="10" height="10" rx="1" />
-            </svg>
+            <img src="/images/qrcode.jpeg" alt="Follow us on Social" style={{ width: '80px', height: '80px', borderRadius: '8px' }} />
           </div>
         </motion.div>
       </div>

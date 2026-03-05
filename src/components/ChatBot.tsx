@@ -17,19 +17,6 @@ const quickReplies = [
   "What are your cancellation policies?",
 ];
 
-const predefinedAnswers: Record<string, string> = {
-  "What destinations do you offer?":
-    "We currently offer group trips across the Mediterranean — including Greece, Italy, Turkey, Croatia, and Spain! New destinations are added every season. 🌍",
-  "How do group bookings work?":
-    "It's simple! Pick a trip, choose your dates, and invite your crew. We handle all logistics — flights, stays, activities. You just show up and have fun! 🎉",
-  "What's included in a trip?":
-    "Every Trippy package includes accommodation, curated activities, local guides, and travel insurance. Flights and meals can be added as extras. ✈️",
-  "How can I customize my trip?":
-    "Head to our 'Build Your Trip' section! Pick your destination, set your budget, choose activities, and we'll craft a personalized itinerary just for your group. 🛠️",
-  "What are your cancellation policies?":
-    "Free cancellation up to 30 days before departure. After that, a small fee applies. Full details are in our booking terms. We keep it fair! 💙",
-};
-
 export function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
@@ -40,8 +27,11 @@ export function ChatBot() {
       timestamp: new Date(),
     },
   ]);
+  const [conversationId, setConversationId] = useState<string | null>(null);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [hasOpened, setHasOpened] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -54,29 +44,46 @@ export function ChatBot() {
   }, [messages, isTyping]);
 
   useEffect(() => {
-    if (isOpen && inputRef.current) {
-      inputRef.current.focus();
+    if (isOpen) {
+      setHasOpened(true);
+      setShowNotification(false);
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
     }
   }, [isOpen]);
 
+  const [hasNotified, setHasNotified] = useState(false);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (!hasOpened && !isOpen && !hasNotified) {
+      timer = setTimeout(() => {
+        setShowNotification(true);
+        setHasNotified(true);
+        // Sharp message pop notification sound
+        const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2354/2354-preview.mp3');
+        // Note: Browsers block autoplaying audio unless the user has interacted with the page first
+        audio.play().catch((e) => console.log('Audio playback prevented by browser policy (user must interact with page first):', e));
+      }, 15000);
+    }
+    return () => clearTimeout(timer);
+  }, [hasOpened, isOpen, hasNotified]);
+
   const addBotResponse = (text: string) => {
-    setIsTyping(true);
-    setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: Date.now().toString(),
-          text,
-          sender: 'bot',
-          timestamp: new Date(),
-        },
-      ]);
-      setIsTyping(false);
-    }, 800 + Math.random() * 600);
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: Date.now().toString(),
+        text,
+        sender: 'bot',
+        timestamp: new Date(),
+      },
+    ]);
   };
 
-  const handleSend = () => {
-    const trimmed = inputValue.trim();
+  const handleSend = async (text: string = inputValue) => {
+    const trimmed = text.trim();
     if (!trimmed) return;
 
     const userMsg: Message = {
@@ -85,33 +92,46 @@ export function ChatBot() {
       sender: 'user',
       timestamp: new Date(),
     };
+
     setMessages((prev) => [...prev, userMsg]);
     setInputValue('');
+    setIsTyping(true);
 
-    // Check predefined answers first
-    const match = Object.keys(predefinedAnswers).find(
-      (q) => q.toLowerCase() === trimmed.toLowerCase()
-    );
+    try {
+      const requestBody: Record<string, any> = { message: trimmed };
+      if (conversationId) {
+        requestBody.conversation_id = conversationId;
+      }
 
-    if (match) {
-      addBotResponse(predefinedAnswers[match]);
-    } else {
-      // Fallback — placeholder for future AI integration
-      addBotResponse(
-        "Great question! I don't have a specific answer for that yet, but our team would love to help. Drop us a message in the 'Get In Touch' section and we'll get back to you ASAP! 💌"
-      );
+      const response = await fetch('https://trippycrush-chatbot.onrender.com/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (data.conversation_id) {
+        setConversationId(data.conversation_id);
+      }
+
+      addBotResponse(data.answer || "I'm sorry, I didn't get a proper response.");
+    } catch (error) {
+      console.error('Chat API Error:', error);
+      addBotResponse("Oops! I'm having trouble connecting to my brain right now. Please try again later. 🤕");
+    } finally {
+      setIsTyping(false);
     }
   };
 
   const handleQuickReply = (question: string) => {
-    const userMsg: Message = {
-      id: Date.now().toString(),
-      text: question,
-      sender: 'user',
-      timestamp: new Date(),
-    };
-    setMessages((prev) => [...prev, userMsg]);
-    addBotResponse(predefinedAnswers[question]);
+    handleSend(question);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -138,7 +158,7 @@ export function ChatBot() {
             whileTap={{ scale: 0.9 }}
           >
             <MessageCircle />
-            <span className="chatbot-badge">1</span>
+            {showNotification && <span className="chatbot-badge">1</span>}
           </motion.button>
         )}
       </AnimatePresence>
@@ -160,7 +180,7 @@ export function ChatBot() {
                   <Bot size={20} />
                 </div>
                 <div>
-                  <h4>Trippy Assistant</h4>
+                  <h4>TrippyBot</h4>
                   <span className="chatbot-status">
                     <span className="status-dot"></span>
                     Online
@@ -259,7 +279,7 @@ export function ChatBot() {
               />
               <button
                 className="chatbot-send"
-                onClick={handleSend}
+                onClick={() => handleSend()}
                 disabled={!inputValue.trim()}
               >
                 <Send size={18} />

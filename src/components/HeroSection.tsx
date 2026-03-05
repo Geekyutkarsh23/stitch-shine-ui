@@ -11,23 +11,13 @@ export function HeroSection() {
 
   return (
     <section className="hero-section" id="hero">
-      <motion.div 
+      <motion.div
         className="hero-content"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <motion.div 
-          className="badge"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.3 }}
-        >
-          <Plane size={14} />
-          EST. SINCE 2026
-        </motion.div>
-
-        <motion.h1 
+        <motion.h1
           className="hero-title"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -36,29 +26,29 @@ export function HeroSection() {
           Trips You'll <span className="crush">Crush</span> On
         </motion.h1>
 
-        <motion.p 
+        <motion.p
           className="hero-subtitle"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
         >
-          Experience the world differently. We curate unique group journeys 
+          Experience the world differently. We curate unique group journeys
           that blend adventure, soulful community, and unforgettable vibes.
         </motion.p>
 
-        <motion.div 
+        <motion.div
           className="hero-buttons"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
         >
-          <button 
+          <button
             className="btn-primary"
-            onClick={() => handleScroll('#booking')}
+            onClick={() => handleScroll('#featured')}
           >
-            View Current Bookings
+            View Upcoming Trips
           </button>
-          <button 
+          <button
             className="btn-secondary"
             onClick={() => handleScroll('#vibe')}
           >
@@ -67,7 +57,7 @@ export function HeroSection() {
         </motion.div>
       </motion.div>
 
-      <motion.div 
+      <motion.div
         className="stamp-decoration"
         initial={{ opacity: 0, rotate: 0 }}
         animate={{ opacity: 0.8, rotate: 15 }}

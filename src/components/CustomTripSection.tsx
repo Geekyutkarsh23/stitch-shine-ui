@@ -23,7 +23,7 @@ export function CustomTripSection() {
           viewport={{ once: true }}
         >
           <h2>
-            <em>Dreaming of a <span className="underline">Unique Path?</span></em>
+            <em>Dreaming of a <span className="underline">Unique Path? </span></em>
           </h2>
           <p>
             Whether it's a celebration, a corporate retreat, or a private trip with your group,

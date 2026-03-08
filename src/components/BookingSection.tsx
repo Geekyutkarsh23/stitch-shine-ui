@@ -32,7 +32,7 @@ export function BookingSection() {
         viewport={{ once: true }}
       >
         <h2>Secure Your Spot</h2>
-        {/* <p>Spaces are limited to 12 travelers per trip to maintain the vibe.</p> */}
+        <p>Spaces are limited to maintain the vibe.</p>
       </motion.div>
 
       <div className="booking-steps">

@@ -42,7 +42,7 @@ export function Navbar() {
         >
           <img
             src="/images/logo.jpeg"
-            alt="Trippy Logo"
+            alt="TrippyCrush Logo"
             style={{
               height: '50px',
               width: '50px',

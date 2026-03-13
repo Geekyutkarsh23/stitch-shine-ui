@@ -13,7 +13,7 @@ export function Footer() {
           viewport={{ once: true }}
         >
           <div className="logo">
-            <img src="/images/logo.jpeg" alt="Trippy Logo" style={{ height: '50px', width: 'auto' }} />
+            <img src="/images/logo.jpeg" alt="TrippyCrush Logo" style={{ height: '50px', width: 'auto' }} />
           </div>
           <p className="tagline font-handwritten">
             Trips you'll crush on, memories that last forever.
@@ -109,7 +109,7 @@ export function Footer() {
 
       <div className="footer-bottom">
         <p>© 2026 TRIPPYCRUSH TRAVEL. CURATING CRUSHES WORLDWIDE.</p>
-        <p>DESIGNED WITH <span className="heart">❤</span> BY THE TRIPPY TEAM</p>
+        <p>DESIGNED WITH <span className="heart">❤</span> BY THE TRIPPYCRUSH TEAM</p>
       </div>
     </footer>
   );

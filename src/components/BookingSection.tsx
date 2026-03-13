@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Sparkles, CheckSquare } from 'lucide-react';
+import { Sparkles, CheckSquare, BookCheck, BadgeCheck } from 'lucide-react';
 
 const bookingSteps = [
   {
@@ -15,10 +15,16 @@ const bookingSteps = [
     icon: CheckSquare,
     iconColor: '#FF69B4',
     title: 'Step 2: NOC Form',
-    description: 'Submit your No Objection Certificate for smooth travel processing.',
+    description: 'Submit your No Objection Certificate for smooth travel processing.The NOC will be submitted via WhatsApp or at the time of the trip Onboarding.',
     buttonText: 'Download NOC',
     buttonClass: 'secondary',
     link: 'https://drive.google.com/file/d/1_sKsSaxBw-QDEio733lG4aLiTkCIKo3z/view?usp=drive_link',
+  },
+  {
+    icon: BadgeCheck,
+    iconColor: '#10B981',
+    title: 'Step 3: Confirmation',
+    description: "Once done, you'll receive your trip confirmation and further details on **WhatsApp within 24 hours.",
   },
 ];
 
@@ -51,7 +57,8 @@ export function BookingSection() {
             </div>
             <h3>{step.title}</h3>
             <p>{step.description}</p>
-            <motion.a
+            {
+              step.buttonText &&  <motion.a
               href={step.link}
               target="_blank"
               rel="noopener noreferrer"
@@ -61,6 +68,7 @@ export function BookingSection() {
             >
               {step.buttonText}
             </motion.a>
+            }
           </motion.div>
         ))}
       </div>

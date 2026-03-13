@@ -10,7 +10,7 @@ const trips = [
     title: "Himalayan Hidden Gem",
     highlight: "Barot Valley",
     price: "₹6,499",
-    date: "02 April 2026 - 05 April 2026",
+    date: "2–5 Apr 2026 (3D/2N) | 30 Apr–3 May 2026 (3D/2N)",
     description: "A slow, peaceful valley stay combined with the vibrant mountain town vibe.",
     center: [32.04, 76.86],
     markers: [
@@ -49,7 +49,7 @@ const trips = [
     title: "Spiritual & Scenic",
     highlight: "McLeod Ganj",
     price: "₹5,999",
-    date: "30 April 2026 - 03 May 2026",
+    date: "2–5 Apr 2026 (3D/2N) | 30 Apr–3 May 2026 (3D/2N)",
     description: "A perfect blend of Himalayan adventure & Tibetan culture. Explores treks, waterfalls, and peaceful monasteries.",
     center: [32.2396, 76.3230],
     markers: [
@@ -81,14 +81,14 @@ const trips = [
       },
     ],
     tripImage: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Ajay_Tallam_Dalai_Lama_Temple%2C_McLeod_Ganj.jpg",
-    downloadLink: "https://drive.google.com/file/d/11mGqX12Xd6p3aCTfH_bExTTy3HzDXK9x/view?usp=drive_link",
+    downloadLink: "https://drive.google.com/file/d/1O5_ulFsJAwTJp7fiPwWGCuo15OBAPJcq/view?usp=drive_link",
   },
   {
     id: "lansdowne",
     title: "Quiet Retreat",
     highlight: "Lansdowne",
     price: "₹4,499",
-    date: "08 May 2026 - 10 May 2026",
+    date: "8–10 May 2026 (3D/2N)",
     description: "A peaceful hill escape to the quiet cantonment town of Lansdowne. Perfect for pine forests and mountain sunsets.",
     center: [29.8377, 78.6871],
     markers: [

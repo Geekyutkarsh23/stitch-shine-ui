@@ -143,7 +143,7 @@ export function FeaturedTripSection() {
   useEffect(() => {
     if (mapRef.current) {
       if (!mapInstanceRef.current) {
-        mapInstanceRef.current = L.map(mapRef.current).setView(activeTrip.center as L.LatLngExpression, 11, { animate: false });
+        mapInstanceRef.current = L.map(mapRef.current, { scrollWheelZoom: false }).setView(activeTrip.center as L.LatLngExpression, 11, { animate: false });
         L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
           attribution: '©OpenStreetMap, ©CartoDB',
           maxZoom: 19

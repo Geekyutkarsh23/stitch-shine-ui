@@ -15,7 +15,7 @@ const bookingSteps = [
     icon: CheckSquare,
     iconColor: '#FF69B4',
     title: 'Step 2: NOC Form',
-    description: 'Submit your No Objection Certificate for smooth travel processing.The NOC will be submitted via WhatsApp or at the time of the trip Onboarding.',
+    description: 'Submit your No Objection Certificate for smooth travel processing. The NOC will be submitted via WhatsApp or at the time of the trip Onboarding.',
     buttonText: 'Download NOC',
     buttonClass: 'secondary',
     link: 'https://drive.google.com/file/d/1_sKsSaxBw-QDEio733lG4aLiTkCIKo3z/view?usp=drive_link',

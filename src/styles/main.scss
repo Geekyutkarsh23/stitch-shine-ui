@@ -1156,6 +1156,8 @@ body {
     border: 1px solid var(--card-border);
     text-align: center;
     padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
 
     .step-icon {
       width: 64px;
@@ -1181,6 +1183,7 @@ body {
       color: var(--text-muted);
       margin-bottom: 24px;
       line-height: 1.6;
+      flex-grow: 1;
     }
 
     .step-btn {
@@ -1964,4 +1967,10 @@ body {
   .passport-section {
     padding: 60px 20px;
   }
+}
+
+// Fix Leaflet map controls overlapping navbar
+.leaflet-top,
+.leaflet-bottom {
+  z-index: 400 !important;
 }

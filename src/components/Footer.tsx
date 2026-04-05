@@ -83,6 +83,31 @@ export function Footer() {
         </motion.div>
 
         <motion.div
+          className="footer-corporate"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.25 }}
+        >
+          <h4>CORPORATE EVENTS</h4>
+          <div className="contact-list">
+            <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '4px', lineHeight: '1.5' }}>
+              For sponsorship, collaboration, or corporate events:
+            </p>
+            <div className="contact-item">
+              <Phone />
+              <span>
+                <a href="tel:+918448716217">+91 8448716217</a> , <a href="tel:+918929155621">8929155621</a>
+              </span>
+            </div>
+            <div className="contact-item">
+              <Mail />
+              <a href="mailto:trippycrush3@gmail.com">trippycrush3@gmail.com</a>
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div
           className="footer-social"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

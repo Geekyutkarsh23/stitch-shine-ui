@@ -1224,16 +1224,20 @@ body {
 
   .footer-content {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 40px;
+    grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr;
+    gap: 30px;
     max-width: 1200px;
     margin: 0 auto 40px;
 
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @media (max-width: 768px) {
       grid-template-columns: 1fr 1fr;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 500px) {
       grid-template-columns: 1fr;
     }
   }
@@ -1313,7 +1317,7 @@ body {
     }
   }
 
-  .footer-contact {
+  .footer-contact, .footer-corporate {
     h4 {
       font-size: 12px;
       font-weight: 700;
@@ -1532,6 +1536,50 @@ body {
   right: 24px;
   z-index: 9999;
   font-family: $font-sans;
+}
+
+.chatbot-toggle-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.chatbot-tooltip {
+  position: absolute;
+  right: 100%;
+  margin-right: 16px;
+  background: white;
+  color: var(--text-primary);
+  padding: 12px 18px;
+  border-radius: 20px;
+  border-bottom-right-radius: 4px;
+  font-family: $font-handwritten;
+  font-size: 18px;
+  white-space: nowrap;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  border: 1px solid var(--card-border);
+  cursor: pointer;
+  z-index: 100;
+
+  .dark & {
+    background: var(--card-bg);
+  }
+
+  .tooltip-arrow {
+    position: absolute;
+    right: -6px;
+    bottom: 8px;
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-right: 1px solid var(--card-border);
+    border-bottom: 1px solid var(--card-border);
+    transform: rotate(-45deg);
+
+    .dark & {
+      background: var(--card-bg);
+    }
+  }
 }
 
 .chatbot-toggle {
@@ -1896,6 +1944,57 @@ body {
     width: 44px;
     height: 44px;
   }
+}
+
+// ============ Marquee Banner ============
+.marquee-wrapper {
+  background: var(--bg-primary);
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+  padding: 16px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.marquee-content {
+  display: flex;
+  align-items: center;
+  animation: marqueeScroll 40s linear infinite;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 24px;
+  font-family: $font-sans;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--text-primary);
+  
+  .marquee-icon {
+    color: $orange-primary;
+  }
+  
+  .marquee-separator {
+    color: var(--text-muted);
+    opacity: 0.3;
+    padding-left: 24px;
+  }
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } 
 }
 
 // Responsive breakpoints

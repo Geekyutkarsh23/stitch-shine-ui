@@ -148,18 +148,41 @@ export function ChatBot() {
       {/* Chat Toggle Button */}
       <AnimatePresence>
         {!isOpen && (
-          <motion.button
-            className="chatbot-toggle"
-            onClick={() => setIsOpen(true)}
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0, opacity: 0 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <MessageCircle />
-            {showNotification && <span className="chatbot-badge">1</span>}
-          </motion.button>
+          <div className="chatbot-toggle-wrapper">
+            <motion.div 
+              className="chatbot-tooltip"
+              initial={{ opacity: 0, scale: 0.8, x: 20 }}
+              animate={{ 
+                opacity: 1, 
+                scale: 1, 
+                x: 0,
+                y: [0, -8, 0] 
+              }}
+              transition={{ 
+                opacity: { duration: 0.5, delay: 2 },
+                scale: { duration: 0.5, delay: 2, type: "spring" },
+                x: { duration: 0.5, delay: 2 },
+                y: { repeat: Infinity, duration: 2, ease: "easeInOut", delay: 2.5 }
+              }}
+              onClick={() => setIsOpen(true)}
+            >
+              Got questions? Let's chat! ✨
+              <div className="tooltip-arrow"></div>
+            </motion.div>
+            
+            <motion.button
+              className="chatbot-toggle"
+              onClick={() => setIsOpen(true)}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <MessageCircle />
+              {showNotification && <span className="chatbot-badge">1</span>}
+            </motion.button>
+          </div>
         )}
       </AnimatePresence>
 

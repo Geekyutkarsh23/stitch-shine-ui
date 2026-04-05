@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Backpack, Stamp, Tag, Sparkles } from 'lucide-react';
 const kitItems = [
     {
@@ -25,8 +26,34 @@ const kitItems = [
     },
 ];
 export function WelcomeKitSection() {
+    const sectionRef = useRef<HTMLElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start 80%", "center center"]
+    });
+
+    const item1X = useTransform(scrollYProgress, [0, 1], [-100, 0]);
+    const item1Y = useTransform(scrollYProgress, [0, 1], [100, 0]);
+    const item1Rotate = useTransform(scrollYProgress, [0, 1], [-20, 0]);
+    
+    const item2Y = useTransform(scrollYProgress, [0, 1], [150, 0]);
+    const item2Rotate = useTransform(scrollYProgress, [0, 1], [0, 0]);
+    
+    const item3X = useTransform(scrollYProgress, [0, 1], [100, 0]);
+    const item3Y = useTransform(scrollYProgress, [0, 1], [100, 0]);
+    const item3Rotate = useTransform(scrollYProgress, [0, 1], [20, 0]);
+    
+    const itemOpacity = useTransform(scrollYProgress, [0, 0.8], [0, 1]);
+    const itemScale = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
+
+    const transforms = [
+      { x: item1X, y: item1Y, rotate: item1Rotate },
+      { x: 0, y: item2Y, rotate: item2Rotate },
+      { x: item3X, y: item3Y, rotate: item3Rotate },
+    ];
+
     return (
-        <section className="welcome-kit-section" id="welcome-kit">
+        <section className="welcome-kit-section" id="welcome-kit" ref={sectionRef}>
             <div className="welcome-kit-container">
                 {/* Photo space */}
                 <motion.div
@@ -82,10 +109,14 @@ export function WelcomeKitSection() {
                             <motion.div
                                 key={item.title}
                                 className="kit-item"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.2 + index * 0.15 }}
+                                style={{
+                                    opacity: itemOpacity,
+                                    scale: itemScale,
+                                    x: transforms[index]?.x || 0,
+                                    y: transforms[index]?.y || 0,
+                                    rotate: transforms[index]?.rotate || 0,
+                                    willChange: 'transform, opacity'
+                                }}
                             >
                                 <div className="kit-item-icon" style={{ overflow: 'hidden', padding: item.image ? 0 : undefined }}>
                                     {item.image ? (

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Camera, Heart, BookOpen } from 'lucide-react';
 
 const passportFeatures = [
@@ -17,6 +17,30 @@ const passportFeatures = [
 ];
 
 export function PassportSection() {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 40 });
+  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 40 });
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["15deg", "-15deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-15deg", "15deg"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    x.set(mouseX / width - 0.5);
+    y.set(mouseY / height - 0.5);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
   return (
     <section className="passport-section" id="passport">
       <div className="passport-content">
@@ -25,8 +49,16 @@ export function PassportSection() {
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          style={{
+            rotateX,
+            rotateY,
+            transformStyle: "preserve-3d",
+            perspective: 1000
+          }}
         >
-          <div className="passport-frame">
+          <div className="passport-frame" style={{ transform: "translateZ(40px)" }}>
             <img
               src="/images/passport.jpeg"
               alt="Trippy Passport"

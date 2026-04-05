@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Check } from 'lucide-react';
+import { Check, Plane, Map } from 'lucide-react';
 
 const features = [
   'Celebration trips',
@@ -79,6 +79,7 @@ export function CustomTripSection() {
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
+          style={{ position: 'relative' }}
         >
           <div className="image-frame">
             <div style={{
@@ -95,12 +96,34 @@ export function CustomTripSection() {
               />
             </div>
           </div>
+          
+          <motion.div
+            style={{ position: 'absolute', top: '-10px', left: '-15px', color: '#ff6b35', zIndex: 10, background: 'white', padding: '8px', borderRadius: '50%', boxShadow: '0 4px 10px rgba(0,0,0,0.1)' }}
+            animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
+            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+          >
+            <Plane size={24} />
+          </motion.div>
+          
+          <motion.div
+            style={{ position: 'absolute', bottom: '-15px', right: '-10px', color: '#00ced1', zIndex: 10, background: 'white', padding: '8px', borderRadius: '50%', boxShadow: '0 4px 10px rgba(0,0,0,0.1)' }}
+            animate={{ y: [0, 15, 0], rotate: [0, -5, 0] }}
+            transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
+          >
+            <Map size={24} />
+          </motion.div>
+
           <motion.div
             className="vibe-badge"
             initial={{ opacity: 0, rotate: 0 }}
             whileInView={{ opacity: 1, rotate: 10 }}
+            animate={{ y: [0, -10, 0] }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
+            transition={{
+              opacity: { delay: 0.3, duration: 0.5 },
+              rotate: { delay: 0.3, duration: 0.5 },
+              y: { repeat: Infinity, duration: 3, ease: "easeInOut", delay: 0.8 }
+            }}
           >
             Your Vibe Only!
           </motion.div>

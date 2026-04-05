@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Sparkles, CheckSquare, BookCheck, BadgeCheck } from 'lucide-react';
+import { MagneticWrapper } from './MagneticWrapper';
 
 const bookingSteps = [
   {
@@ -58,16 +59,21 @@ export function BookingSection() {
             <h3>{step.title}</h3>
             <p>{step.description}</p>
             {
-              step.buttonText &&  <motion.a
-              href={step.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`step-btn ${step.buttonClass}`}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              {step.buttonText}
-            </motion.a>
+              step.buttonText &&  (
+                <MagneticWrapper strength={0.15}>
+                  <motion.a
+                    href={step.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`step-btn ${step.buttonClass}`}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    style={{ display: 'inline-block' }}
+                  >
+                    {step.buttonText}
+                  </motion.a>
+                </MagneticWrapper>
+              )
             }
           </motion.div>
         ))}
